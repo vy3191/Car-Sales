@@ -27,10 +27,14 @@ const App = () => {
 
   const removeFeature = item => {
     // dispatch an action here to remove an item
+    console.log('working', item)
+    dispatch({type:"REMOVE_ITEM", payload:item.id})
   };
 
   const buyItem = item => {
     // dipsatch an action here to add an item
+    console.log('working', item)
+    dispatch({type:"ADD_ITEM", payload:item.id})
   };
 
   return (
@@ -40,7 +44,7 @@ const App = () => {
         <AddedFeatures car={state.car} />
       </div>
       <div className="box">
-        <AdditionalFeatures additionalFeatures={state.additionalFeatures} />
+        <AdditionalFeatures additionalFeatures={state.additionalFeatures} add={buyItem} />
         <Total car={state.car} additionalPrice={state.additionalPrice} />
       </div>
     </div>

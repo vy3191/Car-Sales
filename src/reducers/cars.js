@@ -19,13 +19,14 @@ export function reducer(state, action) {
     switch(action.type) {
       case "ADD_ITEM":
         return {
-          ...state,
-          car: {...state.car, features: state.additionalFeatures.filter(item => item.id === action.payload)}
+          ...state,         
+          car: {...state.car, features:[...state.car.features, ...state.additionalFeatures.filter(item => item.id === action.payload)]}
+          // features: [...state.car.features, state.additionalFeatures.filter(item => item.id === action.payload) ]
         }
       case "REMOVE_ITEM":
         return {
           ...state,
-          car: {...state.car, features: state.car.features.filter(item => item.id === action.payload)}
+      car: {...state.car, features: [...state.car.features, ...state.car.features.filter(item => item.id === action.payload)]}
         }  
       default:
        return state;
