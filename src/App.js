@@ -4,6 +4,7 @@ import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import { connect } from 'react-redux';
 import Total from './components/Total';
+import { addItem, removeItem} from './actions/car'
 // import { initialState, reducer} from './reducers/cars';
 
 const App = (props) => {  
@@ -13,13 +14,15 @@ const App = (props) => {
   const removeFeature = item => {
     // dispatch an action here to remove an item
     console.log('working', item)
-    props.dispatch({type:"REMOVE_ITEM", payload:item})
+    // props.dispatch({type:"REMOVE_ITEM", payload:item})
+    props.removeItem(item);
   };
 
   const buyItem = item => {
     // dipsatch an action here to add an item
     console.log('working', item)
-    props.dispatch({type:"ADD_ITEM", payload:item})
+    // props.dispatch({type:"ADD_ITEM", payload:item})
+    props.addItem(item);
   };
 
   return (
@@ -39,8 +42,12 @@ const App = (props) => {
 function mapStateToProps(state) {
    return {
      car: state.car,
-     additionalprice: state.additionalPrice,
+     additionalPrice: state.additionalPrice,
      additionalFeatures: state.additionalFeatures
    }
 }
-export default connect(mapStateToProps)(App);
+
+const mapDispatchToProps = {
+  removeItem, addItem
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
