@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
   additionalPrice: 0,
   car: {
     price: 26395,
@@ -15,9 +15,18 @@ const initialState = {
   ]
 };
 
-export function reducer(state=initialState, action) {
+export function reducer(state, action) {
     switch(action.type) {
-
+      case "ADD_ITEM":
+        return {
+          ...state,
+          car: {...state.car, features: state.additionalFeatures.filter(item => item.id === action.payload)}
+        }
+      case "REMOVE_ITEM":
+        return {
+          ...state,
+          car: {...state.car, features: state.car.features.filter(item => item.id === action.payload)}
+        }  
       default:
        return state;
     }
