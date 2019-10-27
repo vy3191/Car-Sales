@@ -1,4 +1,5 @@
-export const initialState = {
+ 
+ const initialState = {
   additionalPrice: 0,
   car: {
     price: 26395,
@@ -15,7 +16,7 @@ export const initialState = {
   ]
 };
 
-export function reducer(state, action) {
+export function reducer(state=initialState, action) {
     switch(action.type) {
       case "ADD_ITEM":
         return {
