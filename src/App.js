@@ -41,7 +41,7 @@ const App = () => {
     <div className="boxes">
       <div className="box">
         <Header car={state.car} />
-        <AddedFeatures car={state.car} />
+        <AddedFeatures car={state.car} remove={removeFeature}/>
       </div>
       <div className="box">
         <AdditionalFeatures additionalFeatures={state.additionalFeatures} add={buyItem} />
