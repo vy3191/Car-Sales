@@ -20,13 +20,22 @@ export function reducer(state, action) {
       case "ADD_ITEM":
         return {
           ...state,         
-          car: {...state.car, features:[...state.car.features, ...state.additionalFeatures.filter(item => item.id === action.payload)]}
+          car: {
+            ...state.car,
+            price: state.car.price + action.payload.price,
+            features:[...state.car.features, ...state.additionalFeatures.filter(item => item.id === action.payload.id)]
+          },
           // features: [...state.car.features, state.additionalFeatures.filter(item => item.id === action.payload) ]
+          // additionalPrice: state.additionalFeatures.filter(item => item.id === action.payload).reduce((pre,curr) => { return pre.price + curr.price},state.additionalPrice)
+
         }
       case "REMOVE_ITEM":
         return {
           ...state,
-      car: {...state.car, features: [...state.car.features.filter(item => item.id !== action.payload)]}
+         car: {
+           ...state.car,
+           price:state.car.price - action.payload.price,
+          features: [...state.car.features.filter(item => item.id !== action.payload.id)]}
         }  
       default:
        return state;
